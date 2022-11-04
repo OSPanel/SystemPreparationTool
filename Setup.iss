@@ -1,5 +1,5 @@
-#define AppVersion      "5.4.3"
-#define AppVersion_     "5_4_3"
+#define AppVersion      GetDateTimeString('yy/m/d/h', '.', '.')
+#define AppVersion_     GetDateTimeString('yy/m/d/h', '_', '_')
 #define AppDomain       "ospanel.io"
 #define AppTitle        "System Preparation Tool"
 #define CurrentYear     GetDateTimeString('yyyy', '', '')
