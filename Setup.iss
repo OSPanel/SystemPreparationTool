@@ -59,9 +59,9 @@ UsePreviousTasks        = no
 
 [Languages]
 
-Name: "ru";             MessagesFile: "lang\Russian.isl";   LicenseFile: "resources\Microsoft Visual C++ Runtime License.txt"
-Name: "ua";             MessagesFile: "lang\Ukrainian.isl"; LicenseFile: "resources\Microsoft Visual C++ Runtime License.txt"
-Name: "en";             MessagesFile: "lang\Default.isl";   LicenseFile: "resources\Microsoft Visual C++ Runtime License.txt"
+Name: "ru";             MessagesFile: "lang\Russian.isl";   LicenseFile: "LICENSE"
+Name: "ua";             MessagesFile: "lang\Ukrainian.isl"; LicenseFile: "LICENSE"
+Name: "en";             MessagesFile: "lang\Default.isl";   LicenseFile: "LICENSE"
 
 [Tasks]
 
