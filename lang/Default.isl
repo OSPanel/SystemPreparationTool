@@ -384,7 +384,6 @@ AutoStartProgram=Automatically start %1
 AddonHostProgramNotFound=%1 could not be located in the folder you selected.%n%nDo you want to continue anyway?
 
 Msvcr=Install Microsoft Visual C++ 2005-2022 Redistributable Packages
-Msvcrlite=Install Microsoft Runtime DLLs Package
 Sysopts=Optimize Windows settings (reboot)
 Netopts=Optimize network stack settings (reboot)
 Ssdopts=Optimize Windows for SSD-storages (reboot)
