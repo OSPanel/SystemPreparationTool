@@ -59,31 +59,28 @@ UsePreviousTasks        = no
 
 [Languages]
 
-Name: "ru";             MessagesFile: "lang\Russian.isl"
-Name: "ua";             MessagesFile: "lang\Ukrainian.isl"
-Name: "en";             MessagesFile: "lang\Default.isl"
+Name: "ru";             MessagesFile: "lang\Russian.isl";   LicenseFile: "resources\Microsoft Visual C++ Runtime License.txt"
+Name: "ua";             MessagesFile: "lang\Ukrainian.isl"; LicenseFile: "resources\Microsoft Visual C++ Runtime License.txt"
+Name: "en";             MessagesFile: "lang\Default.isl";   LicenseFile: "resources\Microsoft Visual C++ Runtime License.txt"
 
 [Tasks]
 
-Name: "task_OLD";       Description:  "{cm:Msvcrlite}"
 Name: "task_MSVC";      Description:  "{cm:Msvcr}"
 Name: "task_HOSTS";     Description:  "{cm:UnblHosts}"
-Name: "task_WIN";       Description:  "{cm:Sysopts}";  Flags: restart
-Name: "task_NET";       Description:  "{cm:Netopts}";  Flags: restart
-Name: "task_SSD";       Description:  "{cm:Ssdopts}";  Flags: restart unchecked
+Name: "task_WIN";       Description:  "{cm:Sysopts}";       Flags: restart
+Name: "task_NET";       Description:  "{cm:Netopts}";       Flags: restart
+Name: "task_SSD";       Description:  "{cm:Ssdopts}";       Flags: restart unchecked
 
 [Files]
 
 Source: "{sys}\drivers\etc\hosts";                DestDir: "{sys}\drivers\etc"; Flags: ignoreversion external onlyifdestfileexists; Tasks: task_HOSTS; Permissions: users-modify
 Source: "resources\hosts";                        DestDir: "{sys}\drivers\etc"; Flags: ignoreversion onlyifdoesntexist;             Tasks: task_HOSTS; Permissions: users-modify
-Source: "resources\RuntimePack_Lite_x86_x64.exe"; DestDir: "{tmp}";             Flags: ignoreversion deleteafterinstall;            Tasks: task_OLD;   Permissions: users-modify
 Source: "resources\VCRHyb64.exe";                 DestDir: "{tmp}";             Flags: ignoreversion deleteafterinstall;            Tasks: task_MSVC;  Permissions: users-modify
 
 [Run]
 
 // Microsoft Visual C++ Redistributable packages
 
-Filename: "{tmp}\RuntimePack_Lite_x86_x64.exe";   Parameters: "-y -gm2 -fm0";   Flags: runascurrentuser waituntilterminated;        Tasks: task_OLD;
 Filename: "{tmp}\VCRHyb64.exe";                                                 Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: not IsVerySilent
 Filename: "{tmp}\VCRHyb64.exe";                   Parameters: "/S";             Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: IsVerySilent
 
