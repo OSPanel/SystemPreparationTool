@@ -385,7 +385,6 @@ AutoStartProgram=Автоматично завантажувати %1
 AddonHostProgramNotFound=%1 не знайдений у вказаній вами папці%n%nВи все одно бажаєте продовжити?
 
 Msvcr=Встановити Microsoft Visual C++ 2005-2022 Redistributable Packages
-Msvcrlite=Встановити Microsoft Runtime DLLs Package
 Sysopts=Оптимізувати налаштування Windows (перезавантаження)
 Netopts=Оптимізувати налаштування мережевого стека (перезавантаження)
 Ssdopts=Оптимізувати налаштування Windows для роботи з SSD (перезавантаження)
