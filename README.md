@@ -5,7 +5,6 @@ To compile the application yourself, you need to install [Inno Setup Compiler](h
 
 ##  Tool features
 
-* Installing missing Microsoft DLLs (for older modules)
 * Installing Microsoft Visual C++ 2005-2022 Redistributable Packages
 * Configuring access rights to the HOSTS file (+ restoring the file in case of its absence)
 * Optimization of system settings (prohibition of automatic termination of processes, setting timeouts, etc.)
@@ -23,7 +22,6 @@ To compile the application yourself, you need to install [Inno Setup Compiler](h
 
 ##  Возможности инструмента
 
-* Установка недостающих DLL-библиотек от Microsoft (для старых модулей)
 * Установка Microsoft Visual C++ Redistributable packages 2005-2022
 * Настройка прав доступа к файлу HOSTS (+ восстановление файла в случае его отсутствия)
 * Оптимизация системных настроек (запрет автозавершения процессов, тюнинг таймаутов и др.)
