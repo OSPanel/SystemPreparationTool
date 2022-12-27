@@ -73,16 +73,24 @@ Name: "task_SSD";       Description:  "{cm:Ssdopts}";       Flags: restart unche
 
 [Files]
 
-Source: "{sys}\drivers\etc\hosts";                DestDir: "{sys}\drivers\etc"; Flags: ignoreversion external onlyifdestfileexists; Tasks: task_HOSTS; Permissions: users-modify
-Source: "resources\hosts";                        DestDir: "{sys}\drivers\etc"; Flags: ignoreversion onlyifdoesntexist;             Tasks: task_HOSTS; Permissions: users-modify
-Source: "resources\VCRHyb64.exe";                 DestDir: "{tmp}";             Flags: ignoreversion deleteafterinstall;            Tasks: task_MSVC;  Permissions: users-modify
+Source: "{sys}\drivers\etc\hosts";               DestDir: "{sys}\drivers\etc";  Flags: ignoreversion external onlyifdestfileexists; Tasks: task_HOSTS; Permissions: users-modify
+Source: "resources\hosts";                       DestDir: "{sys}\drivers\etc";  Flags: ignoreversion onlyifdoesntexist;             Tasks: task_HOSTS; Permissions: users-modify
+Source: "resources\VCRHyb64.exe";                DestDir: "{tmp}";              Flags: ignoreversion deleteafterinstall;            Tasks: task_MSVC;  Permissions: users-modify
+Source: "resources\VC_redist.x86.exe";           DestDir: "{tmp}";              Flags: ignoreversion deleteafterinstall;            Tasks: task_MSVC;  Permissions: users-modify
+Source: "resources\VC_redist.x64.exe";           DestDir: "{tmp}";              Flags: ignoreversion deleteafterinstall;            Tasks: task_MSVC;  Permissions: users-modify
 
 [Run]
 
-// Microsoft Visual C++ Redistributable packages
+// Microsoft Visual C++ 2005-2008-2010-2012-2013-2019-2022 Redistributable packages
 
-Filename: "{tmp}\VCRHyb64.exe";                                                 Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: not IsVerySilent
-Filename: "{tmp}\VCRHyb64.exe";                   Parameters: "/S";             Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: IsVerySilent
+Filename: "{tmp}\VCRHyb64.exe";                  Parameters: "/DelVCAll";                    Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: not IsVerySilent
+Filename: "{tmp}\VCRHyb64.exe";                  Parameters: "/WithOutVC22";                 Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: not IsVerySilent
+Filename: "{tmp}\VC_redist.x86.exe";             Parameters: "/install /passive /norestart"; Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: not IsVerySilent
+Filename: "{tmp}\VC_redist.x64.exe";             Parameters: "/install /passive /norestart"; Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: not IsVerySilent
+Filename: "{tmp}\VCRHyb64.exe";                  Parameters: "/S /DelVCAll";                 Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: IsVerySilent
+Filename: "{tmp}\VCRHyb64.exe";                  Parameters: "/S /WithOutVC22";              Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: IsVerySilent
+Filename: "{tmp}\VC_redist.x86.exe";             Parameters: "/install /quiet /norestart";   Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: IsVerySilent
+Filename: "{tmp}\VC_redist.x64.exe";             Parameters: "/install /quiet /norestart";   Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: IsVerySilent
 
 // System settings optimization (USER)
 
