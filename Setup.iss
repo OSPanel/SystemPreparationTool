@@ -8,7 +8,7 @@
 
 SourceDir               = .
 OutputDir               = release
-OutputBaseFilename      = open_server_panel_sp_tool_{#AppVersion_}
+OutputBaseFilename      = ospanel_sp_tool_{#AppVersion_}
 
 // Application info
 
