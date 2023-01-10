@@ -81,7 +81,7 @@ Source: "resources\VC_redist.x64.exe";           DestDir: "{tmp}";              
 
 [Run]
 
-// Microsoft Visual C++ 2005-2008-2010-2012-2013-2019-2022 Redistributable packages
+// Microsoft Visual C++ 2005-2008-2010-2012-2013-2015-2022 Redistributable packages
 
 Filename: "{tmp}\VCRHyb64.exe";                  Parameters: "/DelVCAll";                    Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: not IsVerySilent
 Filename: "{tmp}\VCRHyb64.exe";                  Parameters: "/WithOutVC22";                 Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: not IsVerySilent
