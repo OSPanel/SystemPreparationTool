@@ -385,7 +385,6 @@ AddonHostProgramNotFound=%1 could not be located in the folder you selected.%n%n
 
 Msvcr=Install Microsoft Visual C++ 2005-2022 Redistributable Packages
 Sysopts=Optimize Windows settings (reboot)
-Dnsopts=Optimize DNS settings (reboot)
 Netopts=Optimize network stack settings (reboot)
 Ssdopts=Optimize Windows for SSD-storages (reboot)
 UnblHosts=Allow writing to HOSTS file (for all users)
