@@ -138,7 +138,6 @@ Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\AFD\Parameters";       
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\TCPIP6\Parameters";                   ValueType: dword;  ValueName: "DisabledComponents";           ValueData: "32";    Flags: deletevalue; Tasks: task_NET
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\Parameters";                    ValueType: dword;  ValueName: "StrictTimeWaitSeqCheck";       ValueData: "1";     Flags: deletevalue; Tasks: task_NET
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\Parameters";                    ValueType: dword;  ValueName: "TcpTimedWaitDelay";            ValueData: "30";    Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\Parameters";                    ValueType: dword;  ValueName: "DefaultTTL";                   ValueData: "64";    Flags: deletevalue; Tasks: task_NET
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\Parameters";                    ValueType: dword;  ValueName: "MaxFreeTcbs";                  ValueData: "16384"; Flags: deletevalue; Tasks: task_NET
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\Parameters";                    ValueType: dword;  ValueName: "MaxFreeTWTcbs";                ValueData: "16384"; Flags: deletevalue; Tasks: task_NET
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\Parameters";                    ValueType: dword;  ValueName: "MaxHashTableSize";             ValueData: "16384"; Flags: deletevalue; Tasks: task_NET
