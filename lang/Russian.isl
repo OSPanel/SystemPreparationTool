@@ -371,6 +371,7 @@ AddonHostProgramNotFound=%1 не найден в указанной вами папке.%n%nВы всё равно хо
 
 Msvcr=Установить Microsoft Visual C++ 2005-2022 Redistributable Packages
 Sysopts=Оптимизировать настройки Windows (перезагрузка)
+Dnsopts=Оптимизировать настройки DNS (перезагрузка)
 Netopts=Оптимизировать настройки сетевого стека (перезагрузка)
 Ssdopts=Оптимизировать настройки Windows для работы с SSD (перезагрузка)
 UnblHosts=Разрешить запись в файл HOSTS (для всех пользователей)
