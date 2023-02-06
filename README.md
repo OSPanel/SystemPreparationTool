@@ -8,7 +8,7 @@ To compile the application yourself, you need to install [Inno Setup Compiler](h
 * Installing Microsoft Visual C++ 2005-2022 Redistributable Packages
 * Configuring access rights to the HOSTS file (+ restoring the file in case of its absence)
 * Optimization of system settings (prohibition of automatic termination of processes, setting timeouts, etc.)
-* Optimization of the network stack to support a large number of connections and proper DNS operation in a local web development environment
+* optimization of the network stack for proper DNS operation in a local web development environment
 * Optimization of system services and settings for working with a solid-state drive
 
 ##  System requirements
@@ -25,7 +25,7 @@ To compile the application yourself, you need to install [Inno Setup Compiler](h
 * Установка Microsoft Visual C++ Redistributable packages 2005-2022
 * Настройка прав доступа к файлу HOSTS (+ восстановление файла в случае его отсутствия)
 * Оптимизация системных настроек (запрет автозавершения процессов, тюнинг таймаутов и др.)
-* Оптимизация сетевого стека для поддержки большого числа соединений и правильной работы DNS в условиях локальной веб-разработки
+* Оптимизация сетевого стека для правильной работы DNS в условиях локальной веб-разработки
 * Оптимизация системных сервисов и настроек для работы с SSD
 
 ##  Системные требования
