@@ -99,11 +99,6 @@ Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\
 Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\Desktop""                                    /v HungAppTimeout            /t REG_SZ    /d 30000      /f"; Flags: runasoriginaluser runhidden waituntilterminated; Tasks: task_WIN
 Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\BrowserEmulation""    /v IntranetCompatibilityMode /t REG_DWORD /d 0x00000000 /f"; Flags: runasoriginaluser runhidden waituntilterminated; Tasks: task_WIN
 
-// Network settings optimization 
-
-Filename: "{sys}\netsh.exe"; Parameters: "int ipv4 set dynamicport tcp start=49152 num=16384"; Flags: runascurrentuser runhidden waituntilterminated; Tasks: task_NET
-Filename: "{sys}\netsh.exe"; Parameters: "int ipv4 set dynamicport udp start=49152 num=16384"; Flags: runascurrentuser runhidden waituntilterminated; Tasks: task_NET
-
 // System services optimization for SSD
 
 Filename: "{sys}\sc.exe";    Parameters: "stop SysMain";                                       Flags: runascurrentuser runhidden waituntilterminated; Tasks: task_SSD
@@ -119,7 +114,7 @@ Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Memory M
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management";    ValueType: dword;  ValueName: "LargeSystemCache";             ValueData: "0";     Flags: deletevalue; Tasks: task_SSD
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters";    ValueName: "EnablePrefetcher";             ValueData: "0";     Flags: deletevalue; Tasks: task_SSD; ValueType: dword
 
-// DNS settings optimization 
+// Network settings optimization 
 
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider";               ValueType: dword;  ValueName: "LocalPriority";                ValueData: "4";     Flags: deletevalue; Tasks: task_NET
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider";               ValueType: dword;  ValueName: "HostsPriority";                ValueData: "5";     Flags: deletevalue; Tasks: task_NET
@@ -128,29 +123,7 @@ Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider";
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Dnscache\Parameters";                 ValueType: dword;  ValueName: "NegativeCacheTime";            ValueData: "300";   Flags: deletevalue; Tasks: task_NET
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Dnscache\Parameters";                 ValueType: dword;  ValueName: "NetFailureCacheTime";          ValueData: "30";    Flags: deletevalue; Tasks: task_NET
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Dnscache\Parameters";                 ValueType: dword;  ValueName: "NegativeSOACacheTime";         ValueData: "120";   Flags: deletevalue; Tasks: task_NET
-
-// Network settings optimization 
-
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\AFD\Parameters";                      ValueType: dword;  ValueName: "EnableDynamicBacklog";         ValueData: "1";     Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\AFD\Parameters";                      ValueType: dword;  ValueName: "MinimumDynamicBacklog";        ValueData: "20";    Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\AFD\Parameters";                      ValueType: dword;  ValueName: "MaximumDynamicBacklog";        ValueData: "16384"; Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\AFD\Parameters";                      ValueType: dword;  ValueName: "DynamicBacklogGrowthDelta";    ValueData: "10";    Flags: deletevalue; Tasks: task_NET
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\TCPIP6\Parameters";                   ValueType: dword;  ValueName: "DisabledComponents";           ValueData: "32";    Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\Parameters";                    ValueType: dword;  ValueName: "StrictTimeWaitSeqCheck";       ValueData: "1";     Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\Parameters";                    ValueType: dword;  ValueName: "TcpTimedWaitDelay";            ValueData: "30";    Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\Parameters";                    ValueType: dword;  ValueName: "MaxFreeTcbs";                  ValueData: "16384"; Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\Parameters";                    ValueType: dword;  ValueName: "MaxFreeTWTcbs";                ValueData: "16384"; Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\Parameters";                    ValueType: dword;  ValueName: "MaxHashTableSize";             ValueData: "16384"; Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\Parameters";                    ValueType: dword;  ValueName: "TCPMaxDataRetransmissions";    ValueData: "5";     Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\Parameters";                    ValueType: dword;  ValueName: "TcpNumConnections";            ValueData: "16384"; Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\Parameters";                    ValueType: dword;  ValueName: "TcpWindowSize";                ValueData: "64240"; Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\Parameters";                    ValueType: dword;  ValueName: "DisableTaskOffload";           ValueData: "0";     Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\QoS";                           ValueType: string; ValueName: "Do not use NLA";               ValueData: "1";     Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\MSMQ\Parameters";                                    ValueType: dword;  ValueName: "TCPNoDelay";                   ValueData: "1";     Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SOFTWARE\Policies\Microsoft\Windows\Psched";                            ValueType: dword;  ValueName: "NonBestEffortLimit";           ValueData: "0";     Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters";             ValueType: dword;  ValueName: "Size";                         ValueData: "2";     Flags: deletevalue; Tasks: task_NET 
-Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile"; ValueType: dword;  ValueName: "NetworkThrottlingIndex";       ValueData: "-1";    Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile"; ValueType: dword;  ValueName: "SystemResponsiveness";         ValueData: "10";    Flags: deletevalue; Tasks: task_NET
 
 // System settings optimization (ADMIN)
 
