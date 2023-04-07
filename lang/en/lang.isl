@@ -16,14 +16,14 @@ LanguageID=$0409
 LanguageCodePage=0
 ; If the language you are translating to requires special font faces or
 ; sizes, uncomment any of the following entries and change them accordingly.
-;DialogFontName=
-;DialogFontSize=8
-;WelcomeFontName=Verdana
-;WelcomeFontSize=12
-;TitleFontName=Arial
-;TitleFontSize=29
-;CopyrightFontName=Arial
-;CopyrightFontSize=8
+DialogFontName=Segoe UI
+DialogFontSize=9
+WelcomeFontName=Segoe UI
+WelcomeFontSize=13
+TitleFontName=Segoe UI
+TitleFontSize=27
+CopyrightFontName=Segoe UI
+CopyrightFontSize=9
 
 [Messages]
 
@@ -384,7 +384,7 @@ AutoStartProgram=Automatically start %1
 AddonHostProgramNotFound=%1 could not be located in the folder you selected.%n%nDo you want to continue anyway?
 
 Msvcr=Install Microsoft Visual C++ 2005-2022 Redistributable Packages
-Sysopts=Optimize Windows settings (reboot)
-Netopts=Optimize network stack settings (reboot)
-Ssdopts=Optimize Windows for SSD-storages (reboot)
+Sysopts=Optimize Windows shutdown settings
+Netopts=Optimize network stack settings
+Ssdopts=Optimize system settings for SSD
 UnblHosts=Allow writing to HOSTS file (for all users)

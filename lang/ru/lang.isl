@@ -11,6 +11,14 @@
 LanguageName=<0420><0443><0441><0441><043A><0438><0439>
 LanguageID=$0419
 LanguageCodePage=1251
+DialogFontName=Segoe UI
+DialogFontSize=9
+WelcomeFontName=Segoe UI
+WelcomeFontSize=13
+TitleFontName=Segoe UI
+TitleFontSize=27
+CopyrightFontName=Segoe UI
+CopyrightFontSize=9
 
 [Messages]
 
@@ -370,7 +378,7 @@ AutoStartProgram=Автоматически запускать %1
 AddonHostProgramNotFound=%1 не найден в указанной вами папке.%n%nВы всё равно хотите продолжить?
 
 Msvcr=Установить Microsoft Visual C++ 2005-2022 Redistributable Packages
-Sysopts=Оптимизировать настройки Windows (перезагрузка)
-Netopts=Оптимизировать настройки сетевого стека (перезагрузка)
-Ssdopts=Оптимизировать настройки Windows для работы с SSD (перезагрузка)
+Sysopts=Оптимизировать настройки завершения работы Windows
+Netopts=Оптимизировать настройки сетевого стека
+Ssdopts=Оптимизировать настройки системы для SSD
 UnblHosts=Разрешить запись в файл HOSTS (для всех пользователей)
