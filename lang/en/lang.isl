@@ -1,4 +1,4 @@
-; *** Inno Setup version 6.1.0+ English messages ***
+﻿; *** Inno Setup version 6.1.0+ English messages ***
 ;
 ; To download user-contributed translations of this file, go to:
 ;   https://jrsoftware.org/files/istrans/
@@ -13,7 +13,7 @@
 ; understand the '[LangOptions] section' topic in the help file.
 LanguageName=English
 LanguageID=$0409
-LanguageCodePage=1252
+LanguageCodePage=0
 ; If the language you are translating to requires special font faces or
 ; sizes, uncomment any of the following entries and change them accordingly.
 DialogFontName=Segoe UI
