@@ -18,14 +18,14 @@ LanguageID=$0422
 LanguageCodePage=1251
 ; If the language you are translating to requires special font faces or
 ; sizes, uncomment any of the following entries and change them accordingly.
-;DialogFontName=
-;DialogFontSize=8
-;WelcomeFontName=Verdana
-;WelcomeFontSize=12
-;TitleFontName=Arial
-;TitleFontSize=29
-;CopyrightFontName=Arial
-;CopyrightFontSize=8
+DialogFontName=Segoe UI
+DialogFontSize=9
+WelcomeFontName=Segoe UI
+WelcomeFontSize=13
+TitleFontName=Segoe UI
+TitleFontSize=27
+CopyrightFontName=Segoe UI
+CopyrightFontSize=9
 
 [Messages]
 
@@ -385,7 +385,7 @@ AutoStartProgram=Автоматично завантажувати %1
 AddonHostProgramNotFound=%1 не знайдений у вказаній вами папці%n%nВи все одно бажаєте продовжити?
 
 Msvcr=Встановити Microsoft Visual C++ 2005-2022 Redistributable Packages
-Sysopts=Оптимізувати налаштування Windows (перезавантаження)
-Netopts=Оптимізувати налаштування мережевого стека (перезавантаження)
-Ssdopts=Оптимізувати налаштування Windows для роботи з SSD (перезавантаження)
+Sysopts=Оптимізувати налаштування завершення роботи Windows
+Netopts=Оптимізувати налаштування мережевого стека
+Ssdopts=Оптимізувати налаштування системи для SSD
 UnblHosts=Дозволити запис до файлу HOSTS (для всіх користувачів)
