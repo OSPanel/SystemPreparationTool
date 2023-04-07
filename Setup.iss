@@ -59,9 +59,9 @@ UsePreviousTasks        = no
 
 [Languages]
 
-Name: "ru";             MessagesFile: "lang\Russian.isl";   LicenseFile: "LICENSE"
-Name: "ua";             MessagesFile: "lang\Ukrainian.isl"; LicenseFile: "LICENSE"
-Name: "en";             MessagesFile: "lang\Default.isl";   LicenseFile: "LICENSE"
+Name: "en";             MessagesFile: "lang\en\lang.isl";   LicenseFile: "LICENSE"
+Name: "ru";             MessagesFile: "lang\ru\lang.isl";   LicenseFile: "LICENSE"
+Name: "ua";             MessagesFile: "lang\ua\lang.isl";   LicenseFile: "LICENSE"
 
 [Tasks]
 
@@ -73,36 +73,36 @@ Name: "task_SSD";       Description:  "{cm:Ssdopts}";       Flags: restart unche
 
 [Files]
 
-Source: "{sys}\drivers\etc\hosts";               DestDir: "{sys}\drivers\etc";  Flags: ignoreversion external onlyifdestfileexists; Tasks: task_HOSTS; Permissions: users-modify
-Source: "resources\hosts";                       DestDir: "{sys}\drivers\etc";  Flags: ignoreversion onlyifdoesntexist;             Tasks: task_HOSTS; Permissions: users-modify
-Source: "resources\VCRHyb64.exe";                DestDir: "{tmp}";              Flags: ignoreversion deleteafterinstall;            Tasks: task_MSVC;  Permissions: users-modify
-Source: "resources\VC_redist.x86.exe";           DestDir: "{tmp}";              Flags: ignoreversion deleteafterinstall;            Tasks: task_MSVC;  Permissions: users-modify
-Source: "resources\VC_redist.x64.exe";           DestDir: "{tmp}";              Flags: ignoreversion deleteafterinstall;            Tasks: task_MSVC;  Permissions: users-modify
+Source: "resources\hosts";                       DestDir: "{sys}\drivers\etc";                 Flags: ignoreversion onlyifdoesntexist;                       Tasks: task_HOSTS;  Permissions: users-modify
+Source: "{sys}\drivers\etc\hosts";               DestDir: "{sys}\drivers\etc";                 Flags: ignoreversion external onlyifdestfileexists;           Tasks: task_HOSTS;  Permissions: users-modify
+Source: "resources\VCRHyb64.exe";                DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
+Source: "resources\VC_redist.x86.exe";           DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
+Source: "resources\VC_redist.x64.exe";           DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
 
 [Run]
 
 // Microsoft Visual C++ 2005-2008-2010-2012-2013-2015-2022 Redistributable packages
 
-Filename: "{tmp}\VCRHyb64.exe";                  Parameters: "/DelVCAll";                    Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: not IsVerySilent
-Filename: "{tmp}\VCRHyb64.exe";                  Parameters: "/WithOutVC22";                 Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: not IsVerySilent
-Filename: "{tmp}\VC_redist.x86.exe";             Parameters: "/install /passive /norestart"; Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: not IsVerySilent
-Filename: "{tmp}\VC_redist.x64.exe";             Parameters: "/install /passive /norestart"; Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: not IsVerySilent
-Filename: "{tmp}\VCRHyb64.exe";                  Parameters: "/S /DelVCAll";                 Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: IsVerySilent
-Filename: "{tmp}\VCRHyb64.exe";                  Parameters: "/S /WithOutVC22";              Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: IsVerySilent
-Filename: "{tmp}\VC_redist.x86.exe";             Parameters: "/install /quiet /norestart";   Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: IsVerySilent
-Filename: "{tmp}\VC_redist.x64.exe";             Parameters: "/install /quiet /norestart";   Flags: runascurrentuser waituntilterminated;        Tasks: task_MSVC;  Check: IsVerySilent
+Filename: "{tmp}\VCRHyb64.exe";                  Parameters: "/DelVCAll";                      Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: not IsVerySilent
+Filename: "{tmp}\VCRHyb64.exe";                  Parameters: "/WithOutVC22";                   Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: not IsVerySilent
+Filename: "{tmp}\VC_redist.x86.exe";             Parameters: "/install /passive /norestart";   Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: not IsVerySilent
+Filename: "{tmp}\VC_redist.x64.exe";             Parameters: "/install /passive /norestart";   Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: not IsVerySilent
+Filename: "{tmp}\VCRHyb64.exe";                  Parameters: "/S /DelVCAll";                   Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: IsVerySilent
+Filename: "{tmp}\VCRHyb64.exe";                  Parameters: "/S /WithOutVC22";                Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: IsVerySilent
+Filename: "{tmp}\VC_redist.x86.exe";             Parameters: "/install /quiet /norestart";     Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: IsVerySilent
+Filename: "{tmp}\VC_redist.x64.exe";             Parameters: "/install /quiet /norestart";     Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: IsVerySilent
 
 // System settings optimization (USER)
 
 Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\Desktop""                                    /v AutoEndTasks              /t REG_SZ    /d 0          /f"; Flags: runasoriginaluser runhidden waituntilterminated; Tasks: task_WIN
 Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\Desktop""                                    /v WaitToKillAppTimeout      /t REG_SZ    /d 30000      /f"; Flags: runasoriginaluser runhidden waituntilterminated; Tasks: task_WIN
 Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\Desktop""                                    /v HungAppTimeout            /t REG_SZ    /d 30000      /f"; Flags: runasoriginaluser runhidden waituntilterminated; Tasks: task_WIN
-Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\BrowserEmulation""    /v IntranetCompatibilityMode /t REG_DWORD /d 0x00000000 /f"; Flags: runasoriginaluser runhidden waituntilterminated; Tasks: task_WIN
+Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\BrowserEmulation""    /v IntranetCompatibilityMode /t REG_DWORD /d 0x00000000 /f"; Flags: runasoriginaluser runhidden waituntilterminated; Tasks: task_NET
 
 // System services optimization for SSD
 
-Filename: "{sys}\sc.exe";    Parameters: "stop SysMain";                                       Flags: runascurrentuser runhidden waituntilterminated; Tasks: task_SSD
-Filename: "{sys}\sc.exe";    Parameters: "config SysMain start= disabled";                     Flags: runascurrentuser runhidden waituntilterminated; Tasks: task_SSD
+Filename: "{sys}\sc.exe";    Parameters: "stop SysMain";                                       Flags: runascurrentuser runhidden waituntilterminated;        Tasks: task_SSD
+Filename: "{sys}\sc.exe";    Parameters: "config SysMain start= disabled";                     Flags: runascurrentuser runhidden waituntilterminated;        Tasks: task_SSD
 
 [Registry]
 
@@ -124,10 +124,10 @@ Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Dnscache\Parameters";  
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Dnscache\Parameters";                 ValueType: dword;  ValueName: "NetFailureCacheTime";          ValueData: "30";    Flags: deletevalue; Tasks: task_NET
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Dnscache\Parameters";                 ValueType: dword;  ValueName: "NegativeSOACacheTime";         ValueData: "120";   Flags: deletevalue; Tasks: task_NET
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\TCPIP6\Parameters";                   ValueType: dword;  ValueName: "DisabledComponents";           ValueData: "32";    Flags: deletevalue; Tasks: task_NET
+Root: "HKCU"; Subkey: "SOFTWARE\Microsoft\Internet Explorer\BrowserEmulation";                 ValueType: dword;  ValueName: "IntranetCompatibilityMode";    ValueData: "0";     Flags: deletevalue; Tasks: task_NET
 
 // System settings optimization (ADMIN)
 
-Root: "HKCU"; Subkey: "SOFTWARE\Microsoft\Internet Explorer\BrowserEmulation";                 ValueType: dword;  ValueName: "IntranetCompatibilityMode";    ValueData: "0";     Flags: deletevalue; Tasks: task_WIN 
 Root: "HKCU"; Subkey: "Control Panel\Desktop";                                                 ValueType: string; ValueName: "AutoEndTasks";                 ValueData: "0";     Flags: deletevalue; Tasks: task_WIN
 Root: "HKCU"; Subkey: "Control Panel\Desktop";                                                 ValueType: string; ValueName: "WaitToKillAppTimeout";         ValueData: "30000"; Flags: deletevalue; Tasks: task_WIN
 Root: "HKCU"; Subkey: "Control Panel\Desktop";                                                 ValueType: string; ValueName: "HungAppTimeout";               ValueData: "30000"; Flags: deletevalue; Tasks: task_WIN
@@ -150,4 +150,12 @@ begin
       Result := True;
       Exit;
     end;
+end;
+
+procedure CurPageChanged(CurPageID: Integer);
+begin
+  if CurPageID = wpFinished then
+  begin
+    WizardForm.FinishedHeadingLabel.Font.Style := [];
+  end;
 end;
