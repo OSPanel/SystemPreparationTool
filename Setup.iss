@@ -59,9 +59,9 @@ UsePreviousTasks        = no
 
 [Languages]
 
-Name: "en";             MessagesFile: "lang\en\lang.isl";   LicenseFile: "LICENSE"
-Name: "ru";             MessagesFile: "lang\ru\lang.isl";   LicenseFile: "LICENSE"
-Name: "ua";             MessagesFile: "lang\ua\lang.isl";   LicenseFile: "LICENSE"
+Name: "en";             MessagesFile: "lang\en\lang.isl";   LicenseFile: "lang\en\LICENSE"
+Name: "ru";             MessagesFile: "lang\ru\lang.isl";   LicenseFile: "lang\ru\LICENSE"
+Name: "ua";             MessagesFile: "lang\ua\lang.isl";   LicenseFile: "lang\ua\LICENSE"
 
 [Tasks]
 
