@@ -16,19 +16,19 @@ AppName                 = {#AppTitle}
 AppVersion              = {#AppVersion}
 AppPublisherURL         = https://{#AppDomain}
 AppPublisher            = {#AppDomain}
+SetupMutex              = Global\OSPSystemPreparationTool
 VersionInfoCompany      = {#AppDomain}
 VersionInfoVersion      = {#AppVersion}
 VersionInfoTextVersion  = {#AppVersion}
 VersionInfoDescription  = {#AppTitle}
 VersionInfoProductName  = {#AppTitle}
-VersionInfoCopyright    = Copyright (c) 2010-{#CurrentYear}, {#AppDomain}
+VersionInfoCopyright    = Copyright (c) {#CurrentYear}, {#AppDomain}
 
 // Compression
 
 Compression             = lzma2/ultra64
 InternalCompressLevel   = ultra64
 LZMAUseSeparateProcess  = yes
-LZMAAlgorithm           = 1
 SolidCompression        = yes
 
 // Misc
