@@ -134,6 +134,7 @@ Root: "HKCU"; Subkey: "Control Panel\Desktop";                                  
 Root: "HKU";  Subkey: ".DEFAULT\Control Panel\Desktop";                                        ValueType: string; ValueName: "AutoEndTasks";                 ValueData: "0";     Flags: deletevalue; Tasks: task_WIN
 Root: "HKU";  Subkey: ".DEFAULT\Control Panel\Desktop";                                        ValueType: string; ValueName: "WaitToKillAppTimeout";         ValueData: "30000"; Flags: deletevalue; Tasks: task_WIN
 Root: "HKU";  Subkey: ".DEFAULT\Control Panel\Desktop";                                        ValueType: string; ValueName: "HungAppTimeout";               ValueData: "30000"; Flags: deletevalue; Tasks: task_WIN
+Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\FileSystem";                           ValueType: dword;  ValueName: "LongPathsEnabled";             ValueData: "1";     Flags: deletevalue; Tasks: task_WIN
 
 [Code]
 
