@@ -378,7 +378,7 @@ AutoStartProgram=Автоматически запускать %1
 AddonHostProgramNotFound=%1 не найден в указанной вами папке.%n%nВы всё равно хотите продолжить?
 
 Msvcr=Установить Microsoft Visual C++ 2005-2022 Redistributable Packages
-Sysopts=Оптимизировать настройки завершения работы Windows
+Sysopts=Оптимизировать настройки системы
 Netopts=Оптимизировать настройки сетевого стека
 Ssdopts=Оптимизировать настройки системы для SSD
 UnblHosts=Разрешить запись в файл HOSTS (для всех пользователей)
