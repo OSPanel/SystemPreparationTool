@@ -99,10 +99,10 @@ Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\
 Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\Desktop""                                    /v HungAppTimeout            /t REG_SZ    /d 30000      /f"; Flags: runasoriginaluser runhidden waituntilterminated; Tasks: task_WIN
 Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\BrowserEmulation""    /v IntranetCompatibilityMode /t REG_DWORD /d 0x00000000 /f"; Flags: runasoriginaluser runhidden waituntilterminated; Tasks: task_NET
 
-// System services optimization for SSD
+// System settings optimization (ADMIN)
 
-Filename: "{sys}\sc.exe";    Parameters: "stop SysMain";                                       Flags: runascurrentuser runhidden waituntilterminated;        Tasks: task_SSD
-Filename: "{sys}\sc.exe";    Parameters: "config SysMain start= disabled";                     Flags: runascurrentuser runhidden waituntilterminated;        Tasks: task_SSD
+Filename: "{sys}\sc.exe";    Parameters: "config SysMain start= auto";                         Flags: runascurrentuser runhidden waituntilterminated;        Tasks: task_WIN
+Filename: "{sys}\sc.exe";    Parameters: "start SysMain";                                      Flags: runascurrentuser runhidden waituntilterminated;        Tasks: task_WIN
 
 [Registry]
 
