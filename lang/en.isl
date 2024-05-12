@@ -185,7 +185,7 @@ ComponentsDiskSpaceMBLabel=Current selection requires at least [mb] MB of disk s
 ; *** "Select Additional Tasks" wizard page
 WizardSelectTasks=Preparing the system for working with Open Server Panel
 SelectTasksDesc=Installing additional system components
-SelectTasksLabel2=Select the components to install and the required actions:
+SelectTasksLabel2=Select additional components and actions:
 
 ; *** "Select Start Menu Folder" wizard page
 WizardSelectProgramGroup=Select Start Menu Folder
