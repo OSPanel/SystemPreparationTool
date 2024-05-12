@@ -66,15 +66,12 @@ Name: "ua";             MessagesFile: "lang\ua.isl";   LicenseFile: "LICENSE"
 [Tasks]
 
 Name: "task_MSVC";      Description:  "{cm:Msvcr}"
-Name: "task_HOSTS";     Description:  "{cm:UnblHosts}"
-Name: "task_WIN";       Description:  "{cm:Sysopts}";       Flags: restart
-Name: "task_NET";       Description:  "{cm:Netopts}";       Flags: restart
 Name: "task_SSD";       Description:  "{cm:Ssdopts}";       Flags: restart unchecked
 
 [Files]
 
-Source: "resources\hosts";                       DestDir: "{sys}\drivers\etc";                 Flags: ignoreversion onlyifdoesntexist;                       Tasks: task_HOSTS;  Permissions: users-modify
-Source: "{sys}\drivers\etc\hosts";               DestDir: "{sys}\drivers\etc";                 Flags: ignoreversion external onlyifdestfileexists;           Tasks: task_HOSTS;  Permissions: users-modify
+Source: "resources\hosts";                       DestDir: "{sys}\drivers\etc";                 Flags: ignoreversion onlyifdoesntexist;                                           Permissions: users-modify
+Source: "{sys}\drivers\etc\hosts";               DestDir: "{sys}\drivers\etc";                 Flags: ignoreversion external onlyifdestfileexists;                               Permissions: users-modify
 Source: "resources\VCRHyb64.exe";                DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
 Source: "resources\VC_redist.x86.exe";           DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
 Source: "resources\VC_redist.x64.exe";           DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
@@ -94,15 +91,15 @@ Filename: "{tmp}\VC_redist.x64.exe";             Parameters: "/install /quiet /n
 
 // System settings optimization (USER)
 
-Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\Desktop""                                    /v AutoEndTasks              /t REG_SZ    /d 0          /f"; Flags: runasoriginaluser runhidden waituntilterminated; Tasks: task_WIN
-Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\Desktop""                                    /v WaitToKillAppTimeout      /t REG_SZ    /d 30000      /f"; Flags: runasoriginaluser runhidden waituntilterminated; Tasks: task_WIN
-Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\Desktop""                                    /v HungAppTimeout            /t REG_SZ    /d 30000      /f"; Flags: runasoriginaluser runhidden waituntilterminated; Tasks: task_WIN
-Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\BrowserEmulation""    /v IntranetCompatibilityMode /t REG_DWORD /d 0x00000000 /f"; Flags: runasoriginaluser runhidden waituntilterminated; Tasks: task_NET
+Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\Desktop""                                    /v AutoEndTasks              /t REG_SZ    /d 0          /f"; Flags: runasoriginaluser runhidden waituntilterminated
+Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\Desktop""                                    /v WaitToKillAppTimeout      /t REG_SZ    /d 30000      /f"; Flags: runasoriginaluser runhidden waituntilterminated
+Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\Desktop""                                    /v HungAppTimeout            /t REG_SZ    /d 30000      /f"; Flags: runasoriginaluser runhidden waituntilterminated
+Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\BrowserEmulation""    /v IntranetCompatibilityMode /t REG_DWORD /d 0x00000000 /f"; Flags: runasoriginaluser runhidden waituntilterminated
 
 // System settings optimization (ADMIN)
 
-Filename: "{sys}\sc.exe";    Parameters: "config SysMain start= auto";                         Flags: runascurrentuser runhidden waituntilterminated;        Tasks: task_WIN
-Filename: "{sys}\sc.exe";    Parameters: "start SysMain";                                      Flags: runascurrentuser runhidden waituntilterminated;        Tasks: task_WIN
+Filename: "{sys}\sc.exe";    Parameters: "config SysMain start= auto";                         Flags: runascurrentuser runhidden waituntilterminated
+Filename: "{sys}\sc.exe";    Parameters: "start SysMain";                                      Flags: runascurrentuser runhidden waituntilterminated
 
 [Registry]
 
@@ -116,25 +113,25 @@ Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Memory M
 
 // Network settings optimization 
 
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider";               ValueType: dword;  ValueName: "LocalPriority";                ValueData: "4";     Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider";               ValueType: dword;  ValueName: "HostsPriority";                ValueData: "5";     Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider";               ValueType: dword;  ValueName: "DnsPriority";                  ValueData: "6";     Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider";               ValueType: dword;  ValueName: "NetbtPriority";                ValueData: "7";     Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Dnscache\Parameters";                 ValueType: dword;  ValueName: "NegativeCacheTime";            ValueData: "300";   Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Dnscache\Parameters";                 ValueType: dword;  ValueName: "NetFailureCacheTime";          ValueData: "30";    Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Dnscache\Parameters";                 ValueType: dword;  ValueName: "NegativeSOACacheTime";         ValueData: "120";   Flags: deletevalue; Tasks: task_NET
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\TCPIP6\Parameters";                   ValueType: dword;  ValueName: "DisabledComponents";           ValueData: "32";    Flags: deletevalue; Tasks: task_NET
-Root: "HKCU"; Subkey: "SOFTWARE\Microsoft\Internet Explorer\BrowserEmulation";                 ValueType: dword;  ValueName: "IntranetCompatibilityMode";    ValueData: "0";     Flags: deletevalue; Tasks: task_NET
+Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider";               ValueType: dword;  ValueName: "LocalPriority";                ValueData: "4";     Flags: deletevalue
+Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider";               ValueType: dword;  ValueName: "HostsPriority";                ValueData: "5";     Flags: deletevalue
+Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider";               ValueType: dword;  ValueName: "DnsPriority";                  ValueData: "6";     Flags: deletevalue
+Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider";               ValueType: dword;  ValueName: "NetbtPriority";                ValueData: "7";     Flags: deletevalue
+Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Dnscache\Parameters";                 ValueType: dword;  ValueName: "NegativeCacheTime";            ValueData: "300";   Flags: deletevalue
+Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Dnscache\Parameters";                 ValueType: dword;  ValueName: "NetFailureCacheTime";          ValueData: "30";    Flags: deletevalue
+Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Dnscache\Parameters";                 ValueType: dword;  ValueName: "NegativeSOACacheTime";         ValueData: "120";   Flags: deletevalue
+Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\TCPIP6\Parameters";                   ValueType: dword;  ValueName: "DisabledComponents";           ValueData: "32";    Flags: deletevalue
+Root: "HKCU"; Subkey: "SOFTWARE\Microsoft\Internet Explorer\BrowserEmulation";                 ValueType: dword;  ValueName: "IntranetCompatibilityMode";    ValueData: "0";     Flags: deletevalue
 
 // System settings optimization (ADMIN)
 
-Root: "HKCU"; Subkey: "Control Panel\Desktop";                                                 ValueType: string; ValueName: "AutoEndTasks";                 ValueData: "0";     Flags: deletevalue; Tasks: task_WIN
-Root: "HKCU"; Subkey: "Control Panel\Desktop";                                                 ValueType: string; ValueName: "WaitToKillAppTimeout";         ValueData: "30000"; Flags: deletevalue; Tasks: task_WIN
-Root: "HKCU"; Subkey: "Control Panel\Desktop";                                                 ValueType: string; ValueName: "HungAppTimeout";               ValueData: "30000"; Flags: deletevalue; Tasks: task_WIN
-Root: "HKU";  Subkey: ".DEFAULT\Control Panel\Desktop";                                        ValueType: string; ValueName: "AutoEndTasks";                 ValueData: "0";     Flags: deletevalue; Tasks: task_WIN
-Root: "HKU";  Subkey: ".DEFAULT\Control Panel\Desktop";                                        ValueType: string; ValueName: "WaitToKillAppTimeout";         ValueData: "30000"; Flags: deletevalue; Tasks: task_WIN
-Root: "HKU";  Subkey: ".DEFAULT\Control Panel\Desktop";                                        ValueType: string; ValueName: "HungAppTimeout";               ValueData: "30000"; Flags: deletevalue; Tasks: task_WIN
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\FileSystem";                           ValueType: dword;  ValueName: "LongPathsEnabled";             ValueData: "1";     Flags: deletevalue; Tasks: task_WIN
+Root: "HKCU"; Subkey: "Control Panel\Desktop";                                                 ValueType: string; ValueName: "AutoEndTasks";                 ValueData: "0";     Flags: deletevalue
+Root: "HKCU"; Subkey: "Control Panel\Desktop";                                                 ValueType: string; ValueName: "WaitToKillAppTimeout";         ValueData: "30000"; Flags: deletevalue
+Root: "HKCU"; Subkey: "Control Panel\Desktop";                                                 ValueType: string; ValueName: "HungAppTimeout";               ValueData: "30000"; Flags: deletevalue
+Root: "HKU";  Subkey: ".DEFAULT\Control Panel\Desktop";                                        ValueType: string; ValueName: "AutoEndTasks";                 ValueData: "0";     Flags: deletevalue
+Root: "HKU";  Subkey: ".DEFAULT\Control Panel\Desktop";                                        ValueType: string; ValueName: "WaitToKillAppTimeout";         ValueData: "30000"; Flags: deletevalue
+Root: "HKU";  Subkey: ".DEFAULT\Control Panel\Desktop";                                        ValueType: string; ValueName: "HungAppTimeout";               ValueData: "30000"; Flags: deletevalue
+Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\FileSystem";                           ValueType: dword;  ValueName: "LongPathsEnabled";             ValueData: "1";     Flags: deletevalue
 
 [Code]
 
