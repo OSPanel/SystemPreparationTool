@@ -107,9 +107,6 @@ Filename: "{sys}\sc.exe";    Parameters: "start SysMain";                       
 
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\FileSystem";                           ValueType: dword;  ValueName: "DisableDeleteNotification";    ValueData: "0";     Flags: deletevalue; Tasks: task_SSD
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\FileSystem";                           ValueType: dword;  ValueName: "NtfsDisable8dot3NameCreation"; ValueData: "1";     Flags: deletevalue; Tasks: task_SSD
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management";    ValueType: dword;  ValueName: "ClearPageFileAtShutdown";      ValueData: "0";     Flags: deletevalue; Tasks: task_SSD
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management";    ValueType: dword;  ValueName: "LargeSystemCache";             ValueData: "0";     Flags: deletevalue; Tasks: task_SSD
-Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters";    ValueName: "EnablePrefetcher";             ValueData: "0";     Flags: deletevalue; Tasks: task_SSD; ValueType: dword
 
 // Network settings optimization 
 
@@ -132,6 +129,9 @@ Root: "HKU";  Subkey: ".DEFAULT\Control Panel\Desktop";                         
 Root: "HKU";  Subkey: ".DEFAULT\Control Panel\Desktop";                                        ValueType: string; ValueName: "WaitToKillAppTimeout";         ValueData: "30000"; Flags: deletevalue
 Root: "HKU";  Subkey: ".DEFAULT\Control Panel\Desktop";                                        ValueType: string; ValueName: "HungAppTimeout";               ValueData: "30000"; Flags: deletevalue
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\FileSystem";                           ValueType: dword;  ValueName: "LongPathsEnabled";             ValueData: "1";     Flags: deletevalue
+Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management";    ValueType: dword;  ValueName: "ClearPageFileAtShutdown";      ValueData: "0";     Flags: deletevalue
+Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management";    ValueType: dword;  ValueName: "LargeSystemCache";             ValueData: "0";     Flags: deletevalue
+Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters";    ValueName: "EnablePrefetcher";             ValueData: "0";     Flags: deletevalue; ValueType: dword
 
 [Code]
 
