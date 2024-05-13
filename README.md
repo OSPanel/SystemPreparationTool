@@ -16,7 +16,7 @@ To compile the application yourself, you need to install [Inno Setup Compiler](h
 * Setting the following order of domain name resolution: local cache, HOSTS file, DNS, NetBT
 * Setting standard DNS timeouts
 * Setting IPv4 priority over IPv6 when resolving domain names
-* Enabling Prefetcher (also enabled by default in Windows). In new operating systems, the SysMain service performs the function of optimizing memory consumption: combining memory pages (page combining) and memory compression (memory compression).
+* Enabling Prefetcher (also enabled by default in Windows). In new operating systems, the SysMain service performs the function of optimizing memory consumption: page combining and memory compression.
 * Disabling Large System Cache (also disabled by default in Windows). Prohibits the operating system from using all RAM for the cache of system files, which allows you to provide Open Server Panel modules with more available RAM.
 * Disabling the cleanup of the swap file when the system is turned off (it is also turned off by default in Windows). When the computer is turned off, data is being intensively written to disk and the Open Server Panel requires as many resources as possible to correctly and quickly close running processes.
 
