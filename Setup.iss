@@ -118,7 +118,6 @@ Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Dnscache\Parameters";  
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Dnscache\Parameters";                 ValueType: dword;  ValueName: "NetFailureCacheTime";          ValueData: "30";    Flags: deletevalue
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\Dnscache\Parameters";                 ValueType: dword;  ValueName: "NegativeSOACacheTime";         ValueData: "120";   Flags: deletevalue
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Services\TCPIP6\Parameters";                   ValueType: dword;  ValueName: "DisabledComponents";           ValueData: "32";    Flags: deletevalue
-Root: "HKCU"; Subkey: "SOFTWARE\Microsoft\Internet Explorer\BrowserEmulation";                 ValueType: dword;  ValueName: "IntranetCompatibilityMode";    ValueData: "0";     Flags: deletevalue
 
 // System settings optimization (ADMIN)
 
