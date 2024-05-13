@@ -91,10 +91,9 @@ Filename: "{tmp}\VC_redist.x64.exe";             Parameters: "/install /quiet /n
 
 // System settings optimization (USER)
 
-Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\Desktop""                                    /v AutoEndTasks              /t REG_SZ    /d 0          /f"; Flags: runasoriginaluser runhidden waituntilterminated
-Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\Desktop""                                    /v WaitToKillAppTimeout      /t REG_SZ    /d 30000      /f"; Flags: runasoriginaluser runhidden waituntilterminated
-Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\Desktop""                                    /v HungAppTimeout            /t REG_SZ    /d 30000      /f"; Flags: runasoriginaluser runhidden waituntilterminated
-Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\BrowserEmulation""    /v IntranetCompatibilityMode /t REG_DWORD /d 0x00000000 /f"; Flags: runasoriginaluser runhidden waituntilterminated
+Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\Desktop""      /v AutoEndTasks              /t REG_SZ    /d 0          /f";  Flags: runasoriginaluser runhidden waituntilterminated
+Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\Desktop""      /v WaitToKillAppTimeout      /t REG_SZ    /d 30000      /f";  Flags: runasoriginaluser runhidden waituntilterminated
+Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\Desktop""      /v HungAppTimeout            /t REG_SZ    /d 30000      /f";  Flags: runasoriginaluser runhidden waituntilterminated
 
 // System settings optimization (ADMIN)
 
