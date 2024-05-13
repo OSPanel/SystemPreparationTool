@@ -31,6 +31,8 @@ To compile the application yourself, you need to install [Inno Setup Compiler](h
 
 ***
 
+# Инструмент подготовки системы
+
 Инструмент для подготовки операционной системы Windows к работе с [Open Server Panel](https://ospanel.io).\
 Для самостоятельной компиляции приложения необходимо установить [Inno Setup Compiler](https://jrsoftware.org/download.php/is.exe).
 
