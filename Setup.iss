@@ -66,12 +66,13 @@ Name: "ua";             MessagesFile: "lang\ua.isl";   LicenseFile: "LICENSE"
 [Tasks]
 
 Name: "task_MSVC";      Description:  "{cm:Msvcr}"
+Name: "task_HOSTS";     Description:  "{cm:UnblHosts}"
 Name: "task_SSD";       Description:  "{cm:Ssdopts}";       Flags: restart unchecked
 
 [Files]
 
-Source: "resources\hosts";                       DestDir: "{sys}\drivers\etc";                 Flags: ignoreversion onlyifdoesntexist;                                           Permissions: users-modify
-Source: "{sys}\drivers\etc\hosts";               DestDir: "{sys}\drivers\etc";                 Flags: ignoreversion external onlyifdestfileexists;                               Permissions: users-modify
+Source: "resources\hosts";                       DestDir: "{sys}\drivers\etc";                 Flags: ignoreversion onlyifdoesntexist;                       Tasks: task_HOSTS;  Permissions: users-modify
+Source: "{sys}\drivers\etc\hosts";               DestDir: "{sys}\drivers\etc";                 Flags: ignoreversion external onlyifdestfileexists;           Tasks: task_HOSTS;  Permissions: users-modify
 Source: "resources\VCRHyb64.exe";                DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
 Source: "resources\VC_redist.x86.exe";           DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
 Source: "resources\VC_redist.x64.exe";           DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
