@@ -7,9 +7,12 @@ To compile the application yourself, you need to install [Inno Setup Compiler](h
 
 * Microsoft Visual C++ Redistributable packages 2005-2022
 
-## Automatic optimizations (required, hidden, non-switchable)
+## Changes to access settings
 
 * Removing access restrictions to the HOSTS file (+ restoring the file in case of its absence)
+
+## Automatic optimizations (required, hidden, non-switchable)
+
 * Setting the timeout after which the application is considered to be frozen, equal to 30 seconds
 * Disabling the automatic shutdown of hung applications
 * Disabling the 260-character path length limit
@@ -40,9 +43,12 @@ To compile the application yourself, you need to install [Inno Setup Compiler](h
 
 * Microsoft Visual C++ Redistributable packages 2005-2022
 
-##  Автоматические оптимизации (обязательные, скрытые, неотключаемые)
+##  Изменения настроек доступа
 
 * Снятие ограничений доступа к файлу HOSTS (+ восстановление файла в случае его отсутствия)
+
+##  Автоматические оптимизации (обязательные, скрытые, неотключаемые)
+
 * Установка таймаута, после которого приложение считается зависшим, равным 30-ти секундам
 * Отключение автоматического завершения зависших приложений
 * Отключение ограничения на длину пути в 260 символов
