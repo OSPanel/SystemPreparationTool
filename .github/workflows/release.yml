@@ -25,6 +25,18 @@ jobs:
           Invoke-WebRequest -Uri "https://jrsoftware.org/download.php/is.exe" -OutFile "innosetup.exe"
           Start-Process innosetup.exe -ArgumentList "/VERYSILENT", "/SUPPRESSMSGBOXES", "/NORESTART" -Wait
 
+      - name: Check redistributable files
+        run: |
+          Write-Host "Checking files in resources folder:"
+          Get-ChildItem resources -Recurse | ForEach-Object {
+            $size = if ($_.PSIsContainer) { "Directory" } else { "{0:N0} bytes ({1:N2} MB)" -f $_.Length, ($_.Length / 1MB) }
+            Write-Host "$($_.Name): $size"
+          }
+
+          Write-Host "`nTotal size of resources folder:"
+          $totalSize = (Get-ChildItem resources -Recurse -File | Measure-Object -Property Length -Sum).Sum
+          Write-Host "{0:N0} bytes ({1:N2} MB)" -f $totalSize, ($totalSize / 1MB)
+
       - name: Compile installer
         run: |
           & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" Setup.iss
