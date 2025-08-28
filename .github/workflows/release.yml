@@ -25,12 +25,21 @@ jobs:
           Invoke-WebRequest -Uri "https://jrsoftware.org/download.php/is.exe" -OutFile "innosetup.exe"
           Start-Process innosetup.exe -ArgumentList "/VERYSILENT", "/SUPPRESSMSGBOXES", "/NORESTART" -Wait
 
-      - name: Compile installer
+      - name: Check compiled files
         run: |
-          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" Setup.iss
+          Write-Host "Files in release folder:"
+          if (Test-Path "release") {
+            Get-ChildItem release -Recurse
+          } else {
+            Write-Host "Release folder not found"
+          }
+
+          Write-Host "Files in current directory:"
+          Get-ChildItem . -Filter "*.exe"
 
       - name: Upload artifacts
-        uses: actions/upload-artifact/merge@v4
+        uses: actions/upload-artifact@v4
         with:
-          name: artifacts
-          delete-merged: true
+          name: installer-artifacts
+          path: release/*.exe
+          if-no-files-found: error
