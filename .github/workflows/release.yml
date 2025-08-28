@@ -36,11 +36,25 @@ jobs:
           $now = Get-Date -Format "yy.M.d.H"
           echo "tag=v$now" >> $env:GITHUB_OUTPUT
 
+      # Подписываем тег через sigstore cosign (keyless)
+      - name: Install cosign
+        uses: sigstore/cosign-installer@v3
+
+      - name: Create and sign tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a ${{ steps.gen_tag.outputs.tag }} -m "Release ${{ steps.gen_tag.outputs.tag }}"
+          cosign sign git --tag ${{ steps.gen_tag.outputs.tag }}
+
+      - name: Push tags
+        run: |
+          git push origin ${{ steps.gen_tag.outputs.tag }}
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.gen_tag.outputs.tag }}
-          name: ""
           body: "Update Microsoft Visual C++ Redistributable packages 2015-2022"
           files: release/*.exe
 
