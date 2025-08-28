@@ -29,13 +29,19 @@ jobs:
         run: |
           Write-Host "Checking files in resources folder:"
           Get-ChildItem resources -Recurse | ForEach-Object {
-            $size = if ($_.PSIsContainer) { "Directory" } else { "{0:N0} bytes ({1:N2} MB)" -f $_.Length, ($_.Length / 1MB) }
-            Write-Host "$($_.Name): $size"
+            if ($_.PSIsContainer) {
+              Write-Host "$($_.Name): Directory"
+            } else {
+              $sizeMB = [math]::Round($_.Length / 1MB, 2)
+              Write-Host "$($_.Name): $($_.Length) bytes ($sizeMB MB)"
+            }
           }
 
-          Write-Host "`nTotal size of resources folder:"
+          Write-Host ""
+          Write-Host "Total size of resources folder:"
           $totalSize = (Get-ChildItem resources -Recurse -File | Measure-Object -Property Length -Sum).Sum
-          Write-Host "{0:N0} bytes ({1:N2} MB)" -f $totalSize, ($totalSize / 1MB)
+          $totalMB = [math]::Round($totalSize / 1MB, 2)
+          Write-Host "Total: $totalSize bytes ($totalMB MB)"
 
       - name: Compile installer
         run: |
