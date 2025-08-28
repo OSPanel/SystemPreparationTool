@@ -30,12 +30,11 @@ jobs:
         with:
           lfs: true
 
-      - name: Copy real files
+      - name: Copy real files simple
         run: |
           New-Item -ItemType Directory -Force -Path "resources_resolved"
           Get-ChildItem resources -File | ForEach-Object {
-            $content = Get-Content $_.FullName -Raw -Encoding Byte
-            [System.IO.File]::WriteAllBytes("resources_resolved\$($_.Name)", $content)
+            Copy-Item $_.FullName "resources_resolved\$($_.Name)" -Force
           }
           Remove-Item resources -Recurse -Force
           Rename-Item resources_resolved resources
@@ -62,4 +61,3 @@ jobs:
       - name: Clean up release folder
         run: |
           Remove-Item release -Recurse -Force
-          Remove-Item resources_resolved -Recurse -Force
