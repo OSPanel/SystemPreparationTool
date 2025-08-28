@@ -1,18 +1,17 @@
-name: Build Installer
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repo with LFS
         uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Ensure LFS files are pulled
+        run: |
+          git lfs install
+          git lfs pull
 
       - name: Remove old Inno Setup (if exists)
         run: |
@@ -24,16 +23,6 @@ jobs:
         run: |
           Invoke-WebRequest -Uri "https://jrsoftware.org/download.php/is.exe" -OutFile "innosetup.exe"
           Start-Process innosetup.exe -ArgumentList "/VERYSILENT", "/SUPPRESSMSGBOXES", "/NORESTART" -Wait
-
-      - name: Checkout repo with LFS
-        uses: actions/checkout@v4
-        with:
-          lfs: true
-
-      - name: Resolve symlinks with robocopy
-        run: |
-          New-Item -ItemType Directory -Force -Path "resources_real"
-          robocopy resources resources_real /E /SL /NFL /NDL /NJH /NJS
 
       - name: Compile installer
         run: |
@@ -50,7 +39,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.gen_tag.outputs.tag }}
-          name: ""
           body: "Update Microsoft Visual C++ Redistributable packages 2015-2022"
           files: release/*.exe
 
