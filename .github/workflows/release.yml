@@ -29,3 +29,12 @@ jobs:
         run: |
           & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" Setup.iss
 
+  artifacts:
+    runs-on: ubuntu-latest
+    needs: extension
+    steps:
+      - name: Upload artifacts
+        uses: actions/upload-artifact/merge@v4
+        with:
+          name: artifacts
+          delete-merged: true
