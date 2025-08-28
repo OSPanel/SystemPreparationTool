@@ -8,7 +8,7 @@
 
 SourceDir               = .
 OutputDir               = release
-OutputBaseFilename      = ospanel_sysprep
+OutputBaseFilename      = ospanel_sys_prep_tool
 
 // Application info
 
