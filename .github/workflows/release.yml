@@ -30,14 +30,15 @@ jobs:
         with:
           lfs: true
 
-      - name: Resolve symlinks
+      - name: Copy real files
         run: |
-          Get-ChildItem resources -Recurse | Where-Object { $_.LinkType -eq "SymbolicLink" } | ForEach-Object {
-            $target = $_.Target
-            $path = $_.FullName
-            Remove-Item $path
-            Copy-Item $target $path
+          New-Item -ItemType Directory -Force -Path "resources_resolved"
+          Get-ChildItem resources -File | ForEach-Object {
+            $content = Get-Content $_.FullName -Raw -Encoding Byte
+            [System.IO.File]::WriteAllBytes("resources_resolved\$($_.Name)", $content)
           }
+          Remove-Item resources -Recurse -Force
+          Rename-Item resources_resolved resources
 
       - name: Compile installer
         run: |
@@ -61,3 +62,4 @@ jobs:
       - name: Clean up release folder
         run: |
           Remove-Item release -Recurse -Force
+          Remove-Item resources_resolved -Recurse -Force
