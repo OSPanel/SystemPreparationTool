@@ -62,4 +62,3 @@ if exist "%RESOURCES%\VC_redist.x64.exe" (
 if exist "%TMPDIR%" rd /s /q "%TMPDIR%"
 
 echo === Done! Files saved to %RESOURCES% ===
-pause
