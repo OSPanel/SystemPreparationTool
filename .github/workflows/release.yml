@@ -43,7 +43,6 @@ jobs:
           name: ""
           body: "Update Microsoft Visual C++ Redistributable packages 2015-2022"
           files: release/*.exe
-          make_latest: true
 
       - name: Clean up release folder
         run: |
