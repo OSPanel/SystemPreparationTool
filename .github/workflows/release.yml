@@ -14,6 +14,17 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Remove old Inno Setup (if exists)
+        run: |
+          if (Test-Path "C:\Program Files (x86)\Inno Setup 6") {
+            Remove-Item "C:\Program Files (x86)\Inno Setup 6" -Recurse -Force
+          }
+
+      - name: Download Inno Setup
+        run: |
+          Invoke-WebRequest -Uri "https://jrsoftware.org/download.php/is.exe" -OutFile "innosetup.exe"
+          Start-Process innosetup.exe -ArgumentList "/VERYSILENT", "/SUPPRESSMSGBOXES", "/NORESTART" -Wait
+
       - name: Compile installer
         run: |
           & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" Setup.iss
