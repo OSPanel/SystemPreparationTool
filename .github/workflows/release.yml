@@ -14,11 +14,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Configure Git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
       - name: Remove old Inno Setup (if exists)
         run: |
           if (Test-Path "C:\Program Files (x86)\Inno Setup 6") {
@@ -41,47 +36,14 @@ jobs:
           $now = Get-Date -Format "yy.M.d.H"
           echo "tag=v$now" >> $env:GITHUB_OUTPUT
 
-      - name: Create and push signed tag
-        run: |
-          git tag -a ${{ steps.gen_tag.outputs.tag }} -m "Release ${{ steps.gen_tag.outputs.tag }}: Update Microsoft Visual C++ Redistributable packages 2015-2022"
-          git push origin ${{ steps.gen_tag.outputs.tag }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.gen_tag.outputs.tag }}
-          name: "Release ${{ steps.gen_tag.outputs.tag }}"
-          body: |
-            ## 🚀 Release ${{ steps.gen_tag.outputs.tag }}
-
-            **What's Updated:**
-            - Microsoft Visual C++ Redistributable packages 2015-2022
-
-            **Build Information:**
-            - Built with GitHub Actions
-            - Commit: ${{ github.sha }}
-            - Date: ${{ github.event.head_commit.timestamp }}
+          name: ""
+          body: "Update Microsoft Visual C++ Redistributable packages 2015-2022"
           files: release/*.exe
           make_latest: true
-          generate_release_notes: true
-
-      - name: Verify release creation
-        run: |
-          $headers = @{
-            "Authorization" = "token ${{ secrets.GITHUB_TOKEN }}"
-            "Accept" = "application/vnd.github.v3+json"
-          }
-
-          $releaseUrl = "https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ steps.gen_tag.outputs.tag }}"
-          $release = Invoke-RestMethod -Uri $releaseUrl -Headers $headers -Method Get
-
-          Write-Host "Release created successfully:"
-          Write-Host "- Tag: $($release.tag_name)"
-          Write-Host "- Name: $($release.name)"
-          Write-Host "- URL: $($release.html_url)"
-          Write-Host "- Published: $($release.published_at)"
 
       - name: Clean up release folder
         run: |
