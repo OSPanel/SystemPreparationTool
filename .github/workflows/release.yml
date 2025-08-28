@@ -18,20 +18,62 @@ jobs:
           git lfs install
           git lfs pull
 
-      - name: Run update.bat
+      - name: Run update script
         id: update
-        shell: cmd
+        shell: pwsh
         run: |
-          call update.bat > update.log
-          type update.log
+          $resources = Join-Path $PWD "resources"
+          if (-not (Test-Path $resources)) { New-Item -ItemType Directory -Path $resources | Out-Null }
+          $tmpdir = Join-Path $env:TEMP ("ospanel_dl_" + (Get-Random))
+          if (Test-Path $tmpdir) { Remove-Item $tmpdir -Recurse -Force }
+          New-Item -ItemType Directory -Path $tmpdir | Out-Null
 
-          findstr /C:"Hashes differ" update.log >nul && (echo updated=1 >> %GITHUB_OUTPUT%)
-          findstr /C:"File not found" update.log >nul && (echo updated=1 >> %GITHUB_OUTPUT%)
+          function Update-File($name, $url) {
+              Write-Host "=== Checking $name ==="
+              $target = Join-Path $resources $name
+              $tmpfile = Join-Path $tmpdir $name
+
+              if (Test-Path $target) {
+                  Invoke-WebRequest -Uri $url -OutFile $tmpfile -UseBasicParsing
+                  $oldhash = (Get-FileHash -Algorithm SHA256 $target).Hash
+                  $newhash = (Get-FileHash -Algorithm SHA256 $tmpfile).Hash
+
+                  Write-Host "Old hash: $oldhash"
+                  Write-Host "New hash: $newhash"
+
+                  if ($oldhash -ieq $newhash) {
+                      Write-Host "Hashes match - keeping existing file."
+                      Remove-Item $tmpfile
+                      return $false
+                  } else {
+                      Write-Host "Hashes differ - replacing file."
+                      Move-Item -Force $tmpfile $target
+                      return $true
+                  }
+              } else {
+                  Write-Host "File not found - downloading..."
+                  Invoke-WebRequest -Uri $url -OutFile $target -UseBasicParsing
+                  return $true
+              }
+          }
+
+          $updated = $false
+          $updated = (Update-File "VC_redist.x86.exe" "https://aka.ms/vs/17/release/VC_redist.x86.exe") -or $updated
+          $updated = (Update-File "VC_redist.x64.exe" "https://aka.ms/vs/17/release/VC_redist.x64.exe") -or $updated
+
+          Remove-Item $tmpdir -Recurse -Force
+          Write-Host "=== Done! Files saved to $resources ==="
+
+          if ($updated) {
+              "updated=1" >> $env:GITHUB_OUTPUT
+          } else {
+              "updated=0" >> $env:GITHUB_OUTPUT
+          }
 
       - name: Stop if nothing updated
-        if: steps.update.outputs.updated != '1'
+        if: steps.update.outputs.updated == '0'
         run: |
-          echo "No updates"
+          echo "No files were updated. Release will not be created."
           exit 0
 
       - name: Remove old Inno Setup (if exists)
@@ -61,7 +103,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.gen_tag.outputs.tag }}
-          body: "Update Microsoft Visual C++ Redistributable packages 2015-2022"
+          body: "Updated Microsoft Visual C++ Redistributable packages (x86 and x64)"
           files: release/*.exe
 
       - name: Clean up release folder
