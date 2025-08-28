@@ -34,10 +34,6 @@ jobs:
         run: |
           New-Item -ItemType Directory -Force -Path "resources_real"
           robocopy resources resources_real /E /SL /NFL /NDL /NJH /NJS
-          if ($LASTEXITCODE -le 1) {
-            Remove-Item resources -Recurse -Force
-            Rename-Item resources_real resources
-          }
 
       - name: Compile installer
         run: |
