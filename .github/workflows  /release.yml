@@ -1,0 +1,36 @@
+name: Build Installer
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Compile installer
+        run: |
+          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" Setup.iss
+
+      - name: Generate release tag
+        id: gen_tag
+        shell: pwsh
+        run: |
+          $now = Get-Date -Format "yy.M.d.H"
+          echo "tag=v$now" >> $env:GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.gen_tag.outputs.tag }}
+          name: ""
+          body: "Update Microsoft Visual C++ Redistributable packages 2015-2022"
+          files: release/*.exe
+
+      - name: Clean up release folder
+        run: |
+          Remove-Item release -Recurse -Force
