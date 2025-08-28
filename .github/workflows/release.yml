@@ -1,10 +1,7 @@
 name: Build Installer
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -20,6 +17,22 @@ jobs:
         run: |
           git lfs install
           git lfs pull
+
+      - name: Run update.bat
+        id: update
+        shell: cmd
+        run: |
+          call update.bat > update.log
+          type update.log
+
+          findstr /C:"Hashes differ" update.log >nul && (echo updated=1 >> %GITHUB_OUTPUT%)
+          findstr /C:"File not found" update.log >nul && (echo updated=1 >> %GITHUB_OUTPUT%)
+
+      - name: Stop if nothing updated
+        if: steps.update.outputs.updated != '1'
+        run: |
+          echo "No updates"
+          exit 0
 
       - name: Remove old Inno Setup (if exists)
         run: |
@@ -44,6 +57,7 @@ jobs:
           echo "tag=v$now" >> $env:GITHUB_OUTPUT
 
       - name: Create GitHub Release
+        if: steps.update.outputs.updated == '1'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.gen_tag.outputs.tag }}
@@ -51,5 +65,6 @@ jobs:
           files: release/*.exe
 
       - name: Clean up release folder
+        if: steps.update.outputs.updated == '1'
         run: |
           Remove-Item release -Recurse -Force
