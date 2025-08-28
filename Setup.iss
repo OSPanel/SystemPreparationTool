@@ -71,11 +71,11 @@ Name: "task_SSD";       Description:  "{cm:Ssdopts}";       Flags: restart unche
 
 [Files]
 
-Source: "resources_real\hosts";                       DestDir: "{sys}\drivers\etc";                 Flags: ignoreversion onlyifdoesntexist;                       Tasks: task_HOSTS;  Permissions: users-modify
+Source: "resources\hosts";                       DestDir: "{sys}\drivers\etc";                 Flags: ignoreversion onlyifdoesntexist;                       Tasks: task_HOSTS;  Permissions: users-modify
 Source: "{sys}\drivers\etc\hosts";               DestDir: "{sys}\drivers\etc";                 Flags: ignoreversion external onlyifdestfileexists;           Tasks: task_HOSTS;  Permissions: users-modify
-Source: "resources_real\VCRHyb64.exe";                DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
-Source: "resources_real\VC_redist.x86.exe";           DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
-Source: "resources_real\VC_redist.x64.exe";           DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
+Source: "resources\VCRHyb64.exe";                DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
+Source: "resources\VC_redist.x86.exe";           DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
+Source: "resources\VC_redist.x64.exe";           DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
 
 [Run]
 
