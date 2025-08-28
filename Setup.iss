@@ -26,7 +26,10 @@ VersionInfoCopyright    = Copyright (c) {#CurrentYear}, {#AppDomain}
 
 // Compression
 
-
+Compression             = lzma2/ultra64
+InternalCompressLevel   = ultra64
+LZMAUseSeparateProcess  = yes
+SolidCompression        = yes
 
 // Misc
 
