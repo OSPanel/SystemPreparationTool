@@ -1,3 +1,5 @@
+[![ru](https://img.shields.io/badge/lang-ru-green.svg)](https://github.com/OSPanel/SystemPreparationTool/blob/main/README.ru.md)
+
 # System Preparation Tool
 
 A tool for preparing the Windows operating system to work with an [Open Server Panel](https://ospanel.io).\
