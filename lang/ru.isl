@@ -401,7 +401,7 @@ AutoStartProgramGroupDescription=Автозапуск:
 AutoStartProgram=Автоматически запускать %1
 AddonHostProgramNotFound=%1 не найден в указанной вами папке.%n%nВы всё равно хотите продолжить?
 
-Msvcr=Установить Microsoft Visual C++ 2005-2022 Redistributable Packages
+Msvcr=Установить Microsoft Visual C++ Redistributable Packages
 Sysopts=Оптимизировать настройки системы
 Netopts=Оптимизировать настройки сетевого стека
 Ssdopts=Оптимизировать настройки системы для SSD
