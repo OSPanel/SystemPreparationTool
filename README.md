@@ -7,7 +7,7 @@ To compile the application yourself, you need to install [Inno Setup Compiler](h
 
 ## Installations (required)
 
-* Microsoft Visual C++ Redistributable packages 2005-2022
+* Microsoft Visual C++ Redistributable packages
 
 ## Changes to access settings
 
