@@ -7,7 +7,7 @@
 
 ##  Выполняемые установки (обязательные)
 
-* Microsoft Visual C++ Redistributable packages 2005-2022
+* Microsoft Visual C++ Redistributable packages
 
 ##  Изменения настроек доступа
 
