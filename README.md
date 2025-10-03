@@ -12,7 +12,6 @@ To compile the application yourself, you need to install [Inno Setup Compiler](h
 ## Changes to access settings
 
 * Removing access restrictions to the HOSTS file (+ restoring the file in case of its absence)
-* Adding the program and its components to the Windows Firewall exceptions list (all networks)
 
 ## Automatic optimizations (required, hidden, non-switchable)
 
