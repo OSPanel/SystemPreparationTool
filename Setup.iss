@@ -67,6 +67,7 @@ Name: "ua";             MessagesFile: "lang\ua.isl";   LicenseFile: "LICENSE"
 
 Name: "task_MSVC";      Description:  "{cm:Msvcr}"
 Name: "task_HOSTS";     Description:  "{cm:UnblHosts}"
+Name: "task_FIREWALL";  Description:  "{cm:UnblFirewall}"
 Name: "task_SSD";       Description:  "{cm:Ssdopts}";       Flags: restart unchecked
 
 [Files]
@@ -95,6 +96,11 @@ Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\
 
 Filename: "{sys}\sc.exe";    Parameters: "config SysMain start= auto";                         Flags: runascurrentuser runhidden waituntilterminated
 Filename: "{sys}\sc.exe";    Parameters: "start SysMain";                                      Flags: runascurrentuser runhidden waituntilterminated
+
+// Set firewall rules
+
+Filename: "{sys}\netsh.exe"; Parameters: "advfirewall firewall add rule name=""Allow OSPanel Folder Inbound"" dir=in action=allow program=""{code:GetProgramFolder}\*"" enable=yes profile=any"; Flags: runascurrentuser runhidden waituntilterminated; Tasks: task_FIREWALL; Check: IsOSPanelPresent
+Filename: "{sys}\netsh.exe"; Parameters: "advfirewall firewall add rule name=""Allow OSPanel Folder Outbound"" dir=out action=allow program=""{code:GetProgramFolder}\*"" enable=yes profile=any"; Flags: runascurrentuser runhidden waituntilterminated; Tasks: task_FIREWALL; Check: IsOSPanelPresent
 
 [Registry]
 
@@ -128,6 +134,19 @@ Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Memory M
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters";    ValueName: "EnablePrefetcher";             ValueData: "0";     Flags: deletevalue; ValueType: dword
 
 [Code]
+
+function GetProgramFolder(): string;
+var
+  InstallerPath: string;
+begin
+  InstallerPath := ExpandConstant('{srcexe}');
+  Result := ExtractFileDir(ExtractFileDir(InstallerPath));
+end;
+
+function IsOSPanelPresent(): Boolean;
+begin
+  Result := FileExists(GetProgramFolder() + '\ospanel.exe');
+end;
 
 // Silent mode checking
 
