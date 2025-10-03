@@ -67,7 +67,6 @@ Name: "ua";             MessagesFile: "lang\ua.isl";   LicenseFile: "LICENSE"
 
 Name: "task_MSVC";      Description:  "{cm:Msvcr}"
 Name: "task_HOSTS";     Description:  "{cm:UnblHosts}"
-Name: "task_FIREWALL";  Description:  "{cm:UnblFirewall}"
 Name: "task_SSD";       Description:  "{cm:Ssdopts}";       Flags: restart unchecked
 
 [Files]
@@ -76,7 +75,6 @@ Source: "resources\hosts";                       DestDir: "{sys}\drivers\etc";  
 Source: "{sys}\drivers\etc\hosts";               DestDir: "{sys}\drivers\etc";                 Flags: ignoreversion external onlyifdestfileexists;           Tasks: task_HOSTS;  Permissions: users-modify
 Source: "resources\VC_redist.x86.exe";           DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
 Source: "resources\VC_redist.x64.exe";           DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
-Source: "resources\firewall.bat";                DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_FIREWALL;   Permissions: users-modify
 
 [Run]
 
@@ -97,10 +95,6 @@ Filename: "{sys}\reg.exe";   Parameters: "ADD ""HKEY_CURRENT_USER\Control Panel\
 
 Filename: "{sys}\sc.exe";    Parameters: "config SysMain start= auto";                         Flags: runascurrentuser runhidden waituntilterminated
 Filename: "{sys}\sc.exe";    Parameters: "start SysMain";                                      Flags: runascurrentuser runhidden waituntilterminated
-
-// Set firewall rules
-
-Filename: "{tmp}\firewall.bat";                  Parameters: """{code:GetProgramFolder}""";    Flags: runascurrentuser runhidden waituntilterminated;        Tasks:task_FIREWALL; Check: IsOSPanelPresent
 
 [Registry]
 
@@ -134,19 +128,6 @@ Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Memory M
 Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters";    ValueName: "EnablePrefetcher";             ValueData: "0";     Flags: deletevalue; ValueType: dword
 
 [Code]
-
-function GetProgramFolder(Param: string): string;
-var
-  InstallerPath: string;
-begin
-  InstallerPath := ExpandConstant('{srcexe}');
-  Result := ExtractFileDir(ExtractFileDir(InstallerPath));
-end;
-
-function IsOSPanelPresent(): Boolean;
-begin
-  Result := FileExists(GetProgramFolder('') + '\ospanel.exe');
-end;
 
 // Silent mode checking
 
