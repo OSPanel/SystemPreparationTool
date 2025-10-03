@@ -1,8 +1,16 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set "SCRIPT_DIR=%~dp0"
-set "FOLDER_PATH=%SCRIPT_DIR%.."
+if "%~1"=="" (
+    exit /b 1
+)
+
+set "FOLDER_PATH=%~1"
+
+if not exist "%FOLDER_PATH%" (
+    exit /b 1
+)
+
 set "RULE_GROUP=OSPanel Applications"
 set /a idx=0
 
