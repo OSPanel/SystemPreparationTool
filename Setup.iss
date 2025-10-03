@@ -76,6 +76,7 @@ Source: "resources\hosts";                       DestDir: "{sys}\drivers\etc";  
 Source: "{sys}\drivers\etc\hosts";               DestDir: "{sys}\drivers\etc";                 Flags: ignoreversion external onlyifdestfileexists;           Tasks: task_HOSTS;  Permissions: users-modify
 Source: "resources\VC_redist.x86.exe";           DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
 Source: "resources\VC_redist.x64.exe";           DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
+Source: "resources\firewall.bat";                DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_FIREWALL;   Permissions: users-modify
 
 [Run]
 
@@ -99,8 +100,7 @@ Filename: "{sys}\sc.exe";    Parameters: "start SysMain";                       
 
 // Set firewall rules
 
-Filename: "{sys}\netsh.exe"; Parameters: "advfirewall firewall add rule name=""Allow OSPanel Folder Inbound"" dir=in action=allow program=""{code:GetProgramFolder}\*"" enable=yes profile=any"; Flags: runascurrentuser runhidden waituntilterminated; Tasks: task_FIREWALL; Check: IsOSPanelPresent
-Filename: "{sys}\netsh.exe"; Parameters: "advfirewall firewall add rule name=""Allow OSPanel Folder Outbound"" dir=out action=allow program=""{code:GetProgramFolder}\*"" enable=yes profile=any"; Flags: runascurrentuser runhidden waituntilterminated; Tasks: task_FIREWALL; Check: IsOSPanelPresent
+Filename: "{tmp}\firewall.bat";  Flags: runascurrentuser runhidden waituntilterminated;        Tasks:task_FIREWALL; Check: IsOSPanelPresent
 
 [Registry]
 
