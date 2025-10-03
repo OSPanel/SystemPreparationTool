@@ -145,7 +145,7 @@ end;
 
 function IsOSPanelPresent(): Boolean;
 begin
-  Result := FileExists(GetProgramFolder() + '\ospanel.exe');
+  Result := FileExists(GetProgramFolder('') + '\ospanel.exe');
 end;
 
 // Silent mode checking
