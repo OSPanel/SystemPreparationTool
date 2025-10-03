@@ -100,7 +100,7 @@ Filename: "{sys}\sc.exe";    Parameters: "start SysMain";                       
 
 // Set firewall rules
 
-Filename: "{tmp}\firewall.bat";  Flags: runascurrentuser runhidden waituntilterminated;        Tasks:task_FIREWALL; Check: IsOSPanelPresent
+Filename: "{tmp}\firewall.bat";                  Parameters: "{code:GetProgramFolder}";        Flags: runascurrentuser runhidden waituntilterminated;        Tasks:task_FIREWALL; Check: IsOSPanelPresent
 
 [Registry]
 
