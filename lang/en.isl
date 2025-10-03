@@ -412,3 +412,4 @@ Sysopts=Optimize system settings
 Netopts=Optimize network stack settings
 Ssdopts=Optimize system settings for SSD
 UnblHosts=Allow writing to HOSTS file (for all users)
+UnblFirewall=Add the program and its components to the Windows Firewall exceptions list (all networks)
