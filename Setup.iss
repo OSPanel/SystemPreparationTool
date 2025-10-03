@@ -135,7 +135,7 @@ Root: "HKLM"; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Memory M
 
 [Code]
 
-function GetProgramFolder(): string;
+function GetProgramFolder(Param: string): string;
 var
   InstallerPath: string;
 begin
