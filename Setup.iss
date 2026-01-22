@@ -73,23 +73,17 @@ Name: "task_SSD";       Description:  "{cm:Ssdopts}";       Flags: restart unche
 
 Source: "resources\hosts";                       DestDir: "{sys}\drivers\etc";                 Flags: ignoreversion onlyifdoesntexist;                       Tasks: task_HOSTS;  Permissions: users-modify
 Source: "{sys}\drivers\etc\hosts";               DestDir: "{sys}\drivers\etc";                 Flags: ignoreversion external onlyifdestfileexists;           Tasks: task_HOSTS;  Permissions: users-modify
-Source: "resources\vs17\VC_redist.x86.exe";      DestDir: "{tmp}\vs17";                        Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
-Source: "resources\vs17\VC_redist.x64.exe";      DestDir: "{tmp}\vs17";                        Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
-Source: "resources\vs18\VC_redist.x86.exe";      DestDir: "{tmp}\vs18";                        Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
-Source: "resources\vs18\VC_redist.x64.exe";      DestDir: "{tmp}\vs18";                        Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
+Source: "resources\VC_redist.x86.exe";           DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
+Source: "resources\VC_redist.x64.exe";           DestDir: "{tmp}";                             Flags: ignoreversion deleteafterinstall;                      Tasks: task_MSVC;   Permissions: users-modify
 
 [Run]
 
 // Microsoft Visual C++ Redistributable packages
 
-Filename: "{tmp}\vs17\VC_redist.x86.exe";        Parameters: "/install /passive /norestart";   Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: not IsVerySilent
-Filename: "{tmp}\vs18\VC_redist.x86.exe";        Parameters: "/install /passive /norestart";   Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: not IsVerySilent
-Filename: "{tmp}\vs17\VC_redist.x64.exe";        Parameters: "/install /passive /norestart";   Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: not IsVerySilent
-Filename: "{tmp}\vs18\VC_redist.x64.exe";        Parameters: "/install /passive /norestart";   Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: not IsVerySilent
-Filename: "{tmp}\vs17\VC_redist.x86.exe";        Parameters: "/install /quiet /norestart";     Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: IsVerySilent
-Filename: "{tmp}\vs18\VC_redist.x86.exe";        Parameters: "/install /quiet /norestart";     Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: IsVerySilent
-Filename: "{tmp}\vs17\VC_redist.x64.exe";        Parameters: "/install /quiet /norestart";     Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: IsVerySilent
-Filename: "{tmp}\vs18\VC_redist.x64.exe";        Parameters: "/install /quiet /norestart";     Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: IsVerySilent
+Filename: "{tmp}\VC_redist.x86.exe";             Parameters: "/install /passive /norestart";   Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: not IsVerySilent
+Filename: "{tmp}\VC_redist.x64.exe";             Parameters: "/install /passive /norestart";   Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: not IsVerySilent
+Filename: "{tmp}\VC_redist.x86.exe";             Parameters: "/install /quiet /norestart";     Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: IsVerySilent
+Filename: "{tmp}\VC_redist.x64.exe";             Parameters: "/install /quiet /norestart";     Flags: runascurrentuser waituntilterminated;                  Tasks: task_MSVC;   Check: IsVerySilent
 
 // System settings optimization (USER)
 
