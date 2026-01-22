@@ -22,19 +22,13 @@ jobs:
         id: update
         shell: pwsh
         run: |
-          $resources_17 = Join-Path $PWD "$resources_17"
-          if (-not (Test-Path $resources_17)) { New-Item -ItemType Directory -Path $resources_17 | Out-Null }
-          $tmpdir_17 = Join-Path $env:TEMP ("ospanel_dl_" + (Get-Random))
-          if (Test-Path $tmpdir_17) { Remove-Item $tmpdir_17 -Recurse -Force }
-          New-Item -ItemType Directory -Path $tmpdir_17 | Out-Null
+          $resources = Join-Path $PWD "resources"
+          if (-not (Test-Path $resources)) { New-Item -ItemType Directory -Path $resources | Out-Null }
+          $tmpdir = Join-Path $env:TEMP ("ospanel_dl_" + (Get-Random))
+          if (Test-Path $tmpdir) { Remove-Item $tmpdir -Recurse -Force }
+          New-Item -ItemType Directory -Path $tmpdir | Out-Null
 
-          $resources_18 = Join-Path $PWD "$resources_18"
-          if (-not (Test-Path $resources_18)) { New-Item -ItemType Directory -Path $resources_18 | Out-Null }
-          $tmpdir_18 = Join-Path $env:TEMP ("ospanel_dl_" + (Get-Random))
-          if (Test-Path $tmpdir_18) { Remove-Item $tmpdir_18 -Recurse -Force }
-          New-Item -ItemType Directory -Path $tmpdir_18 | Out-Null
-
-          function Update-File($name, $url, $resources, $tmpdir) {
+          function Update-File($name, $url) {
               Write-Host "=== Checking $name ==="
               $target = Join-Path $resources $name
               $tmpfile = Join-Path $tmpdir $name
@@ -64,14 +58,11 @@ jobs:
           }
 
           $updated = $false
-          $updated = (Update-File "VC_redist.x86.exe" "https://aka.ms/vs/17/release/VC_redist.x86.exe" $resources_17 $tmpdir_17) -or $updated
-          $updated = (Update-File "VC_redist.x64.exe" "https://aka.ms/vs/17/release/VC_redist.x64.exe" $resources_17 $tmpdir_17) -or $updated
-          $updated = (Update-File "VC_redist.x86.exe" "https://aka.ms/vs/18/release/VC_redist.x86.exe" $resources_18 $tmpdir_18) -or $updated
-          $updated = (Update-File "VC_redist.x64.exe" "https://aka.ms/vs/18/release/VC_redist.x64.exe" $resources_18 $tmpdir_18) -or $updated
+          $updated = (Update-File "VC_redist.x86.exe" "https://aka.ms/vs/17/release/VC_redist.x86.exe") -or $updated
+          $updated = (Update-File "VC_redist.x64.exe" "https://aka.ms/vs/17/release/VC_redist.x64.exe") -or $updated
 
-          Remove-Item $tmpdir_17 -Recurse -Force
-          Remove-Item $tmpdir_18 -Recurse -Force
-          Write-Host "=== Done! Files saved! ==="
+          Remove-Item $tmpdir -Recurse -Force
+          Write-Host "=== Done! Files saved to $resources ==="
 
           if ($updated) {
               "updated=1" >> $env:GITHUB_OUTPUT
