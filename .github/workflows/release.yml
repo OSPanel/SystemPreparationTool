@@ -22,13 +22,13 @@ jobs:
         id: update
         shell: pwsh
         run: |
-          $resources_17 = Join-Path $PWD "resources\vs17"
+          $resources_17 = Join-Path $PWD "$resources_17"
           if (-not (Test-Path $resources_17)) { New-Item -ItemType Directory -Path $resources_17 | Out-Null }
           $tmpdir_17 = Join-Path $env:TEMP ("ospanel_dl_" + (Get-Random))
           if (Test-Path $tmpdir_17) { Remove-Item $tmpdir_17 -Recurse -Force }
           New-Item -ItemType Directory -Path $tmpdir_17 | Out-Null
 
-          $resources_18 = Join-Path $PWD "resources\vs18"
+          $resources_18 = Join-Path $PWD "$resources_18"
           if (-not (Test-Path $resources_18)) { New-Item -ItemType Directory -Path $resources_18 | Out-Null }
           $tmpdir_18 = Join-Path $env:TEMP ("ospanel_dl_" + (Get-Random))
           if (Test-Path $tmpdir_18) { Remove-Item $tmpdir_18 -Recurse -Force }
