@@ -8,16 +8,6 @@ jobs:
     runs-on: windows-2022
 
     steps:
-      - name: Checkout repo with LFS
-        uses: actions/checkout@v4
-        with:
-          lfs: true
-
-      - name: Ensure LFS files are pulled
-        run: |
-          git lfs install
-          git lfs pull
-
       - name: Run update script
         id: update
         shell: pwsh
